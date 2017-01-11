@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI cqlsh 
+#
+
+docker run -it --link cassandra-server --rm cassandra cqlsh cassandra-server

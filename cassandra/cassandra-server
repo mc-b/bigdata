@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI
+#
+
+export CONTAINER=cassandra-server
+export IMAGE=cassandra
+
+b=`docker ps -q --filter "name=${CONTAINER}"`
+
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+docker run -d --name ${CONTAINER} ${IMAGE} 
+

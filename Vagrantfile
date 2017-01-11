@@ -68,8 +68,9 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-#    sudo apt-get update
   config.vm.provision "shell", inline: <<-SHELL
+  	sudo apt-get update
+  	sudo apt-get install -y libxml2-utils
     cd /vagrant/mysql && docker build --tag mysql .
     cd /vagrant/redis && docker build --tag redis .
     cd /vagrant/mongodb && docker build --tag mongodb .
