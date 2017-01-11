@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI
+#
+
+export CONTAINER=spark01
+export IMAGE=spark
+export CMD=bash
+
+
+b=`docker ps -a -q --filter "name=${CONTAINER}"`
+
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+docker run -it --net=host --name ${CONTAINER} --entrypoint ${CMD} ${IMAGE} 
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+#	Publiziert auf ein Topic
+#
+
+
+export ZK_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' zookeeper)
+export KAFKA_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' kafka)
+
+docker run --rm --interactive ches/kafka kafka-console-producer.sh --topic $1 --broker-list $KAFKA_IP:9092

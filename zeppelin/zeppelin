@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI
+#
+
+export CONTAINER=zeppelin01
+export IMAGE=aquila/zeppelin
+export PORT=8080
+
+b=`docker ps -q --filter "name=${CONTAINER}"`
+
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+docker run -p ${PORT}:${PORT} --name ${CONTAINER} ${IMAGE} 
+

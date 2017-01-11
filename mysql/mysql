@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI
+#
+
+export CONTAINER=mysql01
+export IMAGE=mysql
+export CMD=mysql
+export PORT=3306
+
+b=`docker ps -q --filter "name=${CONTAINER}"`
+
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+docker run -d -p ${PORT}:${PORT} --name ${CONTAINER} ${IMAGE} 
+sleep 2
+docker exec -it ${CONTAINER} ${CMD}
+

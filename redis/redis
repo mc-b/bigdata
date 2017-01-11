@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI
+#
+
+export CONTAINER=redis01
+export IMAGE=redis
+export CMD=redis-cli
+export PORT=6379
+
+
+b=`docker ps -q --filter "name=${CONTAINER}"`
+
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+docker run -d -p ${PORT}:${PORT} --name ${CONTAINER} ${IMAGE} 
+docker exec -it ${CONTAINER} ${CMD}

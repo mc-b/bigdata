@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+#	Startet den Docker Container und dann das CLI
+#
+
+export CONTAINER=zookeeper
+export IMAGE=jplock/zookeeper
+
+b=`docker ps -q --filter "name=${CONTAINER}"`
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+export CONTAINER=kafka
+export IMAGE=ches/kafka
+
+b=`docker ps -q --filter "name=${CONTAINER}"`
+if	[ "${b}" != "" ]
+then
+	docker stop ${b}
+	docker rm ${b}
+fi
+
+docker run -d -p 2181:2181 --name zookeeper jplock/zookeeper
+docker run -d --name kafka --link zookeeper:zookeeper ches/kafka

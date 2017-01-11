@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+#	Konsumiert ein Topic
+#
+export ZK_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' zookeeper)
+export KAFKA_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' kafka)
+
+docker run --rm ches/kafka kafka-console-consumer.sh --topic $1 --from-beginning --zookeeper $ZK_IP:2181
