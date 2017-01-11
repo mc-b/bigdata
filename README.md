@@ -17,20 +17,20 @@ Installation und Verwendung
 - Obige Produkte installieren (je nach Plattform)
 - Bash Umgebung starten und Repository clonen
 
-	git clone https://github.com/mc-b/bigdata.git
+    git clone https://github.com/mc-b/bigdata.git
 
 - Umgebung aufsetzen
 
-	cd bigdata
-	vagrant up
+    cd bigdata
+    vagrant up
 
 - Mit laufender Umgebung verbinden
 
-	vagrant ssh
+    vagrant ssh
 	
 - Data Store bzw. Docker Container, je nach Umgebung, starten z.B.:
 
-	/vagrant/mongodb/mongo
+    /vagrant/mongodb/mongo
 	
 - Die Anderen Umgebungen befinden sind im Verzeichnis `/vagrant`
 
