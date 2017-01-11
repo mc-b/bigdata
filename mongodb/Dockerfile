@@ -11,7 +11,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu $(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d= -f2)/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 # Update apt-get sources AND install MongoDB
-RUN apt-get update && apt-get install -y mongodb-org 
+RUN apt-get update && apt-get install -y mongodb-org curl wget libxml2-utils jq git
 
 # Create the MongoDB data directory
 RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
