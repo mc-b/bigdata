@@ -7,7 +7,7 @@ Basiert auf
 * [Vagrant](https://www.vagrantup.com/)
 * [VirtualBox](https://www.virtualbox.org/)
 
-Für Windows wird zusätzlich eine sssh Umgebung benötigt, z.B.
+Für Windows wird zusätzlich eine ssh Umgebung benötigt, z.B.
 * [CygWin](https://www.cygwin.com/)
 * [Git Bash](https://git-scm.com/)
 
