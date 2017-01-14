@@ -17,5 +17,6 @@ then
 fi
 
 docker run -d -p ${PORT}:${PORT} --name ${CONTAINER} ${IMAGE} 
+sleep 2
 docker exec -it ${CONTAINER} ${CMD}
 
