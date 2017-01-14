@@ -11,6 +11,8 @@ Für Windows wird zusätzlich eine ssh Umgebung benötigt, z.B.
 * [CygWin](https://www.cygwin.com/)
 * [Git Bash](https://git-scm.com/)
 
+Wichtig: Git ohne Umwandlung CR/LF Option installieren, bzw. diese nicht aktiveren bei der Installation
+
 Installation und Verwendung
 ---------------------------
 
