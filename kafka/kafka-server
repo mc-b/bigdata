@@ -6,7 +6,7 @@
 export CONTAINER=zookeeper
 export IMAGE=jplock/zookeeper
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 if	[ "${b}" != "" ]
 then
 	docker stop ${b}
@@ -16,7 +16,7 @@ fi
 export CONTAINER=kafka
 export IMAGE=ches/kafka
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 if	[ "${b}" != "" ]
 then
 	docker stop ${b}

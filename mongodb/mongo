@@ -8,7 +8,7 @@ export IMAGE=mongodb
 export CMD=mongo
 export PORT=27017
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 
 if	[ "${b}" != "" ]
 then

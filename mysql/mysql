@@ -8,7 +8,7 @@ export IMAGE=mysql
 export CMD=mysql
 export PORT=3306
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 
 if	[ "${b}" != "" ]
 then

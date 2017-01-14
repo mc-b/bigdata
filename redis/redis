@@ -9,7 +9,7 @@ export CMD=redis-cli
 export PORT=6379
 
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 
 if	[ "${b}" != "" ]
 then

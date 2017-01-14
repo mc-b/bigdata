@@ -7,7 +7,7 @@ export CONTAINER=zeppelin01
 export IMAGE=aquila/zeppelin
 export PORT=8080
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 
 if	[ "${b}" != "" ]
 then
@@ -15,5 +15,5 @@ then
 	docker rm ${b}
 fi
 
-docker run -p ${PORT}:${PORT} --name ${CONTAINER} ${IMAGE} 
+docker run -d -p ${PORT}:${PORT} --name ${CONTAINER} ${IMAGE} 
 

@@ -6,7 +6,7 @@
 export CONTAINER=cassandra-server
 export IMAGE=cassandra
 
-b=`docker ps -q --filter "name=${CONTAINER}"`
+b=`docker ps -q -a --filter "name=${CONTAINER}"`
 
 if	[ "${b}" != "" ]
 then
