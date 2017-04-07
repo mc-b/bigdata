@@ -1,10 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
 Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -12,73 +8,52 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "marcel1691/ubuntu-server"
-
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  config.vm.box = "ubuntu/xenial64"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   # neo4J Port
-  config.vm.network "forwarded_port", guest: 7474, host: 7474
+  config.vm.network "forwarded_port", guest: 7474, host: 7474, auto_correct: false
   # Zeppelin
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
-
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network "public_network"
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.network "forwarded_port", guest: 8080, host: 7080, auto_correct: false
+  # Apache Server mit Doku
+  config.vm.network "forwarded_port", guest: 4000, host: 8080, auto_correct: true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-   vb.gui = false
-  #
-  #   # Customize the amount of memory on the VM:
-   vb.memory = "1536"
+     # Display the VirtualBox GUI when booting the machine
+     vb.gui = false
+     #
+     # Customize the amount of memory on the VM:
+     vb.memory = "2048"
    end
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
 
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  # config.push.define "atlas" do |push|
-  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
-  # end
-
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
+  # provisioning shell script: jq Utiltities 
+   config.vm.provision "shell", inline: <<-SHELL
   	sudo apt-get update
-  	sudo apt-get install -y libxml2-utils
-    cd /vagrant/mysql && docker build --tag mysql .
-    cd /vagrant/redis && docker build --tag redis .
-    cd /vagrant/mongodb && docker build --tag mongodb .
-    docker pull neo4j:3.0
-    cd /vagrant/spark && docker build --tag spark .
-    docker pull aquila/zeppelin
-    docker pull cassandra
-    docker pull jplock/zookeeper
-    docker pull ches/kafka
+  	sudo apt-get install -y libxml2-utils 
 SHELL
+
+  # Docker Provisioner
+   config.vm.provision "docker" do |d|
+     d.build_image "/vagrant/mysql", args: "--tag mysql"     
+     d.build_image "/vagrant/redis", args: "--tag redis"
+     d.build_image "/vagrant/mongodb", args: "--tag mongodb"
+     d.build_image "/vagrant/spark", args: "--tag spark"
+     d.pull_images "neo4j:3.0"
+     d.pull_images "aquila/zeppelin"
+     d.pull_images "cassandra"
+     d.pull_images "jplock/zookeeper"
+     d.pull_images "ches/kafka"
+     d.build_image "/vagrant/gitbook", args: "--tag gitbook"
+     d.run "gitbook", image: "gitbook", args: "-p 4000:4000 -v /vagrant:/srv/gitbook"
+     d.run "zeppelin01", image: "aquila/zeppelin", args: "-p 8080:8080"
+     d.run "neo4j01", image: "neo4j:3.0", args: "-p 7474:7474"
+   end
+   
 end

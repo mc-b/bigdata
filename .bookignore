@@ -1,0 +1,6 @@
+.vagrant
+**/Dockerfile
+Vagrantfile
+.gitignore
+**/spark-2.1.0-bin-hadoop2.7/
+**/learning-spark/
