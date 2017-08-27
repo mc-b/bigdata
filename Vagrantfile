@@ -41,6 +41,7 @@ SHELL
 
   # Docker Provisioner
    config.vm.provision "docker" do |d|
+     d.build_image "/vagrant/gitbook", args: "--tag gitbook"
      d.build_image "/vagrant/mysql", args: "--tag mysql"     
      d.build_image "/vagrant/redis", args: "--tag redis"
      d.build_image "/vagrant/mongodb", args: "--tag mongodb"
@@ -50,7 +51,6 @@ SHELL
      d.pull_images "cassandra"
      d.pull_images "jplock/zookeeper"
      d.pull_images "ches/kafka"
-     d.build_image "/vagrant/gitbook", args: "--tag gitbook"
      d.run "gitbook", image: "gitbook", args: "-p 4000:4000 -v /vagrant:/srv/gitbook"
      d.run "zeppelin01", image: "aquila/zeppelin", args: "-p 8080:8080"
      d.run "neo4j01", image: "neo4j:3.0", args: "-p 7474:7474"

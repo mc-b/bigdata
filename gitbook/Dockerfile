@@ -6,9 +6,9 @@ ARG VERSION=3.2.0
 
 LABEL version=$VERSION
 
-RUN npm install --global gitbook-cli &&\
-	gitbook fetch ${VERSION} &&\
-	npm cache clear &&\
+RUN npm install --global gitbook-cli && \
+	gitbook fetch ${VERSION} && \
+	npm cache --force clear && \
 	rm -rf /tmp/*
 
 WORKDIR /srv/gitbook
