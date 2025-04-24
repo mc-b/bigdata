@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: bigdata
+  namespace: mc-b
+  description: Umgebung für Kurs Big Data - https://www.eb-zuerich.ch/angebot/big-data-ueberblick.html
+  tags: 
+    - No-SQL
+    - cassandra
+    - kafka
+    - mongodb
+    - neo4j
+    - redis
+  links:
+  - url: https://github.com/mc-b/bigdata
+    title: Repository
+    icon: github
+  annotations:
+    github.com/project-slug: mc-b/bigdata
+    backstage.io/source-location: url:https://github.com/mc-b/bigdata
+    backstage.io/techdocs-ref: url:https://github.com/mc-b/bigdata
+spec:
+  type: documentation 
+  lifecycle: deprecated
+  owner: group:mc-b/mc-b
