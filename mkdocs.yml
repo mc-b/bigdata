@@ -1,4 +1,18 @@
 site_name: bigdata
-docs_dir: .
+site_description: 'Big Data Umgebung'
+
+repo_url: https://github.com/mc-b/bigdata
+edit_uri: edit/main
+
+plugins:
+  - techdocs-core
+
 nav:
-- README: README.md
+  - Einleitung: ../README.md
+  - Cassandra: ../cassandra/README.md
+  - Kafka: ../kafka/README.md
+  - Mongo DB: ../mongodb/README.md
+  - My SQL: ../mysql/README.md
+  - Neo 4J: ../neo4j/README.md
+  - Redis: ../redis/README.md
+  - Spark: ../spark/README.md
