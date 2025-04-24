@@ -18,7 +18,7 @@ metadata:
   annotations:
     github.com/project-slug: mc-b/bigdata
     backstage.io/source-location: url:https://github.com/mc-b/bigdata
-    backstage.io/techdocs-ref: url:https://github.com/mc-b/bigdata
+    # backstage.io/techdocs-ref: url:https://github.com/mc-b/bigdata
 spec:
   type: documentation 
   lifecycle: deprecated
