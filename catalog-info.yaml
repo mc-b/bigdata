@@ -12,6 +12,7 @@ metadata:
   - neo4j
   - redis
   - eb
+  - education
   links:
   - url: https://github.com/mc-b/bigdata
     title: Repository
@@ -21,6 +22,6 @@ metadata:
     backstage.io/source-location: url:https://github.com/mc-b/bigdata
     # backstage.io/techdocs-ref: url:https://github.com/mc-b/bigdata
 spec:
-  type: education 
+  type: website
   lifecycle: deprecated
   owner: group:mc-b/mc-b
